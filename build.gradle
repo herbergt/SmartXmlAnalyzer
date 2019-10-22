@@ -16,3 +16,13 @@ dependencies {
 application {
     mainClassName = 'com.agileengine.smartxml.App'
 }
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
